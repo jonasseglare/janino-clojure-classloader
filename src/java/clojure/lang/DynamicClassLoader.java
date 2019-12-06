@@ -20,9 +20,10 @@ import java.net.URLClassLoader;
 import java.net.URL;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
+import java.io.File;
+import org.codehaus.janino.JavaSourceClassLoader;
 
 public class DynamicClassLoader extends URLClassLoader{
-    public static int custom_load_counter = 0;
     public static java.lang.ClassLoader custom_loader = null;
 
 HashMap<Integer, Object[]> constantVals = new HashMap<Integer, Object[]>();
@@ -72,19 +73,35 @@ protected Class<?>findClass(String name) throws ClassNotFoundException {
 		return super.findClass(name);
 }
 
-protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    //load_counter++;
-    if (custom_loader != null) {
+    private static void initializeLoader() {
+        if (custom_loader == null) {
+            custom_loader = new JavaSourceClassLoader(
+                Thread.currentThread().getContextClassLoader(),
+                new File[]{new File("janino")}, 
+                null);
+        }
+    }
+
+    private static Class tryLoadJanino(String name) throws ClassNotFoundException {
+        initializeLoader();
         try {
-            custom_load_counter++;
             return custom_loader.loadClass(name);
         } catch (ClassNotFoundException e) {
             if (e.getCause() instanceof org.codehaus.commons.compiler.LocatedException) {
                 throw e;
             }
+            return null;
         }
     }
-	Class c = findLoadedClass(name);
+
+
+protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+    //load_counter++;
+    Class c = tryLoadJanino(name);
+    if (c != null) {
+        return c;
+    }
+    c = findLoadedClass(name);
 	if (c == null) {
 		c = findInMemoryClass(name);
 		if (c == null)
