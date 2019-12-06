@@ -21,6 +21,7 @@
                       (into-array [(io/file "janino")])
                       nil))
 
+  
   (defn set-source-loader []
     (set! DynamicClassLoader/custom_loader janino-loader))
 
@@ -31,7 +32,7 @@
 
 
   (defn load-mjao []
-    (.loadClass janino-loader "Mjao"))
+    (.loadClass janino-loader "Mjaoll"))
 
 
 

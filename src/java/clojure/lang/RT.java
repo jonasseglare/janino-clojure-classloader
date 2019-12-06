@@ -31,6 +31,8 @@ import java.net.URLConnection;
 
 public class RT{
 
+    public static int load_counter = 0;
+
 static final public Boolean T = Boolean.TRUE;//Keyword.intern(Symbol.intern(null, "t"));
 static final public Boolean F = Boolean.FALSE;//Keyword.intern(Symbol.intern(null, "t"));
 static final public String LOADER_SUFFIX = "__init";
@@ -425,6 +427,7 @@ static public void load(String scriptbase) throws IOException, ClassNotFoundExce
 }
 
 static public void load(String scriptbase, boolean failIfNotFound) throws IOException, ClassNotFoundException{
+    load_counter++;
 	String classfile = scriptbase + LOADER_SUFFIX + ".class";
 	String cljfile = scriptbase + ".clj";
 	String cljcfile = scriptbase + ".cljc";
