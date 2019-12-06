@@ -19,10 +19,7 @@
 
 (set-source-loader)
 
-
-
 (import 'Mjao)
-
 
 (defn load-mjao []
   (.loadClass janino-loader "Mjao"))
