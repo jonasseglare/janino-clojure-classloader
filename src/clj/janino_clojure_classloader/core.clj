@@ -2,10 +2,17 @@
   (:require [clojure.java.io :as io])
   (:import [clojure.lang DynamicClassLoader]
            [org.codehaus.janino JavaSourceClassLoader]
-           Mjao
            ))
 
+(import 'janino.Mjao)
+#_(import 'clojure.lang.AFn)
+
+
+
+#_(println "majo value: " (Mjao/magicOp 3))
+
 (comment
+
   
   (defn current-loader []
     (.deref clojure.lang.Compiler/LOADER))
