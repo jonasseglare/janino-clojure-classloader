@@ -17,9 +17,11 @@
 (defn set-source-loader []
   (set! DynamicClassLoader/custom_loader janino-loader))
 
+
 (set-source-loader)
 
 (import 'Mjao)
+
 
 (defn load-mjao []
   (.loadClass janino-loader "Mjao"))
