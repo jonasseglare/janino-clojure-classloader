@@ -453,6 +453,7 @@ static public void load(String scriptbase, boolean failIfNotFound) throws IOExce
 		}
 	}
 	if(!loaded && cljURL != null) {
+      DynamicClassLoader.custom_loader = null;
 		if(booleanCast(Compiler.COMPILE_FILES.deref()))
 			compile(scriptfile);
 		else
