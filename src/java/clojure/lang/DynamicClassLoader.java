@@ -76,7 +76,7 @@ protected Class<?>findClass(String name) throws ClassNotFoundException {
     private static void initializeLoader() {
         if (custom_loader == null) {
             custom_loader = new JavaSourceClassLoader(
-                Thread.currentThread().getContextClassLoader(),
+                ClassLoader.getSystemClassLoader(),
                 new File[]{new File("janino")}, 
                 null);
         }

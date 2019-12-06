@@ -3,12 +3,10 @@
   (:import [clojure.lang DynamicClassLoader]
            [org.codehaus.janino JavaSourceClassLoader]
            ))
-
-(import 'janino.Mjao)
 #_(import 'clojure.lang.AFn)
 
-
-
+(set! clojure.lang.DynamicClassLoader/custom_loader nil)
+(import 'Mjao)
 #_(println "majo value: " (Mjao/magicOp 3))
 
 (comment
