@@ -5,7 +5,7 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :source-paths ["src/clj"]
   :java-source-paths ["src/java"]
-  :jvm-opts ["-Djanino_src_path=kattskit"]
+  :jvm-opts ["-Djanino_src_path=reloaded_java_sources"]
   :dependencies [[org.clojure/clojure "1.10.1"]
                  ;[org.clojure/clojuretweaked "1.11.0"]
                  [org.codehaus.janino/janino "3.1.0"]]
