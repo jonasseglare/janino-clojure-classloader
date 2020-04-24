@@ -46,6 +46,12 @@ This is what part of it currently looks like:
         {:keys [as reload reload-all require use verbose]} opts
 ```
 
+## Related approaches
+
+  * **HotswapAgent**: reloads Java classes automatically in a running JVM. Example project [here](https://github.com/jonasseglare/hotswap-dcevm-clojure-demo). Sometimes it crashes.
+
+  * **JRebel**: reloads Java classes in a running JVM just like HotswapAgent. Seems more robust than HotswapAgent but the license is expensive.
+
 ## License
 
 Copyright © 2020 Jonas Östlund
