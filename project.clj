@@ -7,6 +7,5 @@
   :java-source-paths ["src/java"]
   :jvm-opts ["-Djanino_src_path=reloaded_java_sources"]
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 ;[org.clojure/clojuretweaked "1.11.0"]
                  [org.codehaus.janino/janino "3.1.0"]]
   :repl-options {:init-ns janino-clojure-classloader.core})
