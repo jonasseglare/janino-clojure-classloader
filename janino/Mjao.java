@@ -3,6 +3,6 @@ import java.util.ArrayList;
 
 public class Mjao {
     public static int magicOp(int x) {
-        return x + 10000;
+        return x + 100;
     }
 }
