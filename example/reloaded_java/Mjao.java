@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Mjao {
     public static int magicOp(int x) {
-        return x + 10000;
+        return x + 1000;
     }
 
     public static ADNumber getX() {
@@ -11,7 +11,7 @@ public class Mjao {
     }
     
     public static ADNumber getY() {
-        return new ADNumber(4, 9);
+        return new ADNumber(4, 5);
     }
 
     public static ADNumber add(ADNumber x, ADNumber y) {
