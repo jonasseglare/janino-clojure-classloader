@@ -7133,8 +7133,11 @@ public static Object eval(Object form) {
 }
 
 public static Object eval(Object form, boolean freshLoader) {
-    DynamicClassLoader.custom_loader = null;
 	boolean createdLoader = false;
+
+  // Only do this when there is a file update?
+  //CustomLoader.reset();
+  
 	if(true)//!LOADER.isBound())
 		{
 		Var.pushThreadBindings(RT.map(LOADER, RT.makeClassLoader()));

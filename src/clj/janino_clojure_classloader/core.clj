@@ -6,3 +6,4 @@
 
 (println "Same class" (= (class (other/get-instance))
                          (class (Mjao.))))
+

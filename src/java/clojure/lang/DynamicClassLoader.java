@@ -21,10 +21,8 @@ import java.net.URL;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.io.File;
-import org.codehaus.janino.JavaSourceClassLoader;
 
 public class DynamicClassLoader extends URLClassLoader{
-    public static java.lang.ClassLoader custom_loader = null;
 
 HashMap<Integer, Object[]> constantVals = new HashMap<Integer, Object[]>();
 static ConcurrentHashMap<String, Reference<Class>>classCache =
@@ -73,19 +71,9 @@ protected Class<?>findClass(String name) throws ClassNotFoundException {
 		return super.findClass(name);
 }
 
-    private static void initializeLoader() {
-        if (custom_loader == null) {
-            custom_loader = new JavaSourceClassLoader(
-                ClassLoader.getSystemClassLoader(),
-                new File[]{new File("janino")}, 
-                null);
-        }
-    }
-
     private static Class tryLoadJanino(String name) throws ClassNotFoundException {
-        initializeLoader();
         try {
-            return custom_loader.loadClass(name);
+            return CustomLoader.get().loadClass(name);
         } catch (ClassNotFoundException e) {
             if (e.getCause() instanceof org.codehaus.commons.compiler.LocatedException) {
                 throw e;
