@@ -6,7 +6,26 @@ import java.util.Date;
 
 public class CustomLoader {
 
-    public static File src_path = new File("janino");
+    public static File getUncheckedSrcPath() {
+        String prop = System.getProperty("janino_src_path");
+        if (prop == null) {
+            return new File("src/janino");
+        } else {
+            return new File(prop);
+        }
+        //return new File("janino");
+    }
+
+    public static File getSrcPath() {
+        File f = getUncheckedSrcPath();
+        if (f.exists()) {
+            return f;
+        } else {
+            throw new RuntimeException("No directory at " + f.getAbsolutePath()
+                + ". Consider defining 'janino_src_path' system property or creating this directory");
+        }
+    }
+    
     public static java.lang.ClassLoader custom_loader = null;
     public static long latest = 0;
 
@@ -28,6 +47,7 @@ public class CustomLoader {
     }
     
     public static java.lang.ClassLoader get() {
+        File src_path = getSrcPath();
         long x = getLatestModifiedDate(src_path);
         if (x > latest) {
             custom_loader = null;
