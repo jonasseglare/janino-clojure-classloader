@@ -9,7 +9,7 @@ public class CustomLoader {
     public static File getUncheckedSrcPath() {
         String prop = System.getProperty("janino_src_path");
         if (prop == null) {
-            return new File("src/janino");
+            return new File("src_janino");
         } else {
             return new File(prop);
         }
